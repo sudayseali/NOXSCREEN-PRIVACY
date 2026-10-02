@@ -569,24 +569,18 @@ export default function PrivacyPolicyPage() {
               />
               <p className="text-sm sm:text-base leading-relaxed text-[#E2E8F0]">
                 <strong className="text-white">
-                  {LEGAL_CONFIG.app.name} uses Unity Ads for Banner and Video
-                  advertising.
+                  {LEGAL_CONFIG.app.name} uses Unity Ads for advertising,
+                  including Banner and Video Ads.
                 </strong>{" "}
                 Verified technical integration parameters for the Unity Ads
                 software development kit (SDK) are as follows:
               </p>
 
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 text-xs">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 text-xs">
                 <div className="rounded-lg border border-[#1C2D4A] bg-[#0B1324] p-3.5 print-surface">
                   <div className="text-[#94A3B8]">Integrated SDK Artifact</div>
                   <div className="mt-1 font-mono font-semibold text-[#00FF88] break-all">
                     {LEGAL_CONFIG.unityAds.sdkArtifact}
-                  </div>
-                </div>
-                <div className="rounded-lg border border-[#1C2D4A] bg-[#0B1324] p-3.5 print-surface">
-                  <div className="text-[#94A3B8]">Unity Game ID</div>
-                  <div className="mt-1 font-mono font-semibold text-white tabular-nums">
-                    &quot;{LEGAL_CONFIG.unityAds.gameId}&quot;
                   </div>
                 </div>
                 <div className="rounded-lg border border-[#1C2D4A] bg-[#0B1324] p-3.5 print-surface">
@@ -1283,11 +1277,7 @@ export default function PrivacyPolicyPage() {
                     <code className="font-mono text-white">
                       {LEGAL_CONFIG.unityAds.sdkArtifact}
                     </code>{" "}
-                    (Game ID{" "}
-                    <code className="font-mono text-white">
-                      {LEGAL_CONFIG.unityAds.gameId}
-                    </code>
-                    ) for Banner and Video advertising. Independently processes
+                    for Banner and Video advertising. Independently processes
                     advertising, device, network, and diagnostic data under
                     Unity&apos;s Privacy Policy.
                   </p>

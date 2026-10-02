@@ -60,7 +60,7 @@ export default function DataSummaryTable() {
       borderAccent: "border-t-[#FFB300]",
       summary: "Unity Ads (Banner and Video Ads) and optional WhatsApp communication.",
       details: [
-        `Unity Ads SDK (${LEGAL_CONFIG.unityAds.sdkArtifact}, Game ID: ${LEGAL_CONFIG.unityAds.gameId}) processes device, network, advertising, and diagnostic data when Banner and Video ads are requested or displayed`,
+        `Unity Ads SDK (${LEGAL_CONFIG.unityAds.sdkArtifact}) processes device, network, advertising, and diagnostic data when Banner and Video ads are requested or displayed`,
         `WhatsApp Support (${LEGAL_CONFIG.whatsappSupport.phoneNumber}) is an external service opened only when initiated by the user`,
         'Android OS system backup may back up eligible local data if android:allowBackup="true" is active in device settings',
       ],
