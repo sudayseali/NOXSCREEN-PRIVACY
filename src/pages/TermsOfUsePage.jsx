@@ -10,7 +10,7 @@ import LegalCallout, {
 
 const TERMS_SECTIONS = [
   { id: "acceptance", label: "Acceptance" },
-  { id: "description", label: "Description of NoXScreen" },
+  { id: "description", label: "Description of NoxScreen Pro" },
   { id: "eligibility", label: "Eligibility" },
   { id: "license", label: "License" },
   { id: "permitted-use", label: "Permitted Use" },
@@ -19,7 +19,7 @@ const TERMS_SECTIONS = [
   { id: "safety-responsibility", label: "Safety and Screen-Blackout Responsibility" },
   { id: "focus-mode-responsibility", label: "Focus Mode Responsibility" },
   { id: "biometric-responsibility", label: "Biometric/App Lock Responsibility" },
-  { id: "rewarded-ads", label: "Rewarded Advertisements" },
+  { id: "rewarded-ads", label: "Advertisements (Unity Ads)" },
   { id: "floating-lock-entitlements", label: "7-Day Floating Lock Entitlements" },
   { id: "third-party-services", label: "Third-Party Services" },
   { id: "prohibited-activities", label: "Prohibited Activities" },
@@ -35,13 +35,13 @@ const TERMS_SECTIONS = [
 
 export default function TermsOfUsePage() {
   useEffect(() => {
-    document.title = `Terms of Use — ${LEGAL_CONFIG.app.name} / ${LEGAL_CONFIG.app.manifestTitle} (${LEGAL_CONFIG.app.packageName} v${LEGAL_CONFIG.app.versionName})`;
+    document.title = "NoxScreen Pro Terms of Use";
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <div className="min-h-screen bg-[#020612] text-white">
-      {/* HERO SECTION (Section 36) */}
+      {/* HERO SECTION */}
       <section className="border-b border-[#1C2D4A] bg-[#091122] py-10 sm:py-14 print-surface">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Document Type Switcher */}
@@ -71,33 +71,34 @@ export default function TermsOfUsePage() {
 
           {/* Primary Document Title */}
           <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-white max-w-3xl">
-            Terms of Use for {LEGAL_CONFIG.app.name} ({LEGAL_CONFIG.app.manifestTitle})
+            NoxScreen Pro Terms of Use
           </h1>
 
           <p className="mt-3 max-w-3xl text-sm sm:text-base leading-relaxed text-[#94A3B8]">
             Governing terms, license conditions, operational safety responsibilities,
-            temporary rewarded entitlement disclosures, and warranty disclaimers for{" "}
-            <code className="font-mono text-white">{LEGAL_CONFIG.app.packageName}</code>.
+            local floating lock entitlement disclosures, and warranty disclaimers for{" "}
+            <strong className="text-white">{LEGAL_CONFIG.app.name}</strong> (
+            <code className="font-mono text-white">{LEGAL_CONFIG.app.packageName}</code>).
           </p>
 
           {/* Verified Application Identity & Dates Metadata Bar */}
           <dl className="mt-7 grid grid-cols-1 gap-4 rounded-lg border border-[#1C2D4A] bg-[#0B1324] p-4 sm:grid-cols-2 lg:grid-cols-3 text-xs print-surface">
             <div>
-              <dt className="text-[#94A3B8]">Application / Manifest Title</dt>
+              <dt className="text-[#94A3B8]">Application Name</dt>
               <dd className="mt-1 font-semibold text-white">
-                {LEGAL_CONFIG.app.name} / {LEGAL_CONFIG.app.manifestTitle}
+                {LEGAL_CONFIG.app.name}
               </dd>
             </div>
             <div>
-              <dt className="text-[#94A3B8]">Android Package Identifier</dt>
-              <dd className="mt-1 font-mono font-semibold text-[#00FF88]">
-                {LEGAL_CONFIG.app.packageName}
+              <dt className="text-[#94A3B8]">Developer</dt>
+              <dd className="mt-1 font-semibold text-white">
+                {LEGAL_CONFIG.placeholders.developerLegalName} ({LEGAL_CONFIG.placeholders.developerType})
               </dd>
             </div>
             <div>
-              <dt className="text-[#94A3B8]">Verified Version & Code</dt>
-              <dd className="mt-1 font-mono font-semibold text-white tabular-nums">
-                v{LEGAL_CONFIG.app.versionName} (Version Code: {LEGAL_CONFIG.app.versionCode})
+              <dt className="text-[#94A3B8]">Android Package &amp; Version</dt>
+              <dd className="mt-1 font-mono font-semibold text-[#00FF88] tabular-nums">
+                {LEGAL_CONFIG.app.packageName} (v{LEGAL_CONFIG.app.versionName})
               </dd>
             </div>
             <div>
@@ -119,7 +120,7 @@ export default function TermsOfUsePage() {
               </dd>
             </div>
             <div>
-              <dt className="text-[#94A3B8]">Governing Law & Jurisdiction</dt>
+              <dt className="text-[#94A3B8]">Governing Law &amp; Jurisdiction</dt>
               <dd className="mt-1">
                 <LegalFieldDisplay
                   label="Governing Law & Jurisdiction"
@@ -145,42 +146,22 @@ export default function TermsOfUsePage() {
             id="main-content"
             className="flex-1 min-w-0 space-y-12 print-full-width"
           >
-            {/* Developer Confirmation Status Banner */}
-            <LegalCallout
-              variant="warning"
-              title="Administrative Fields Pending Developer Confirmation"
-            >
-              <p>
-                Technical functionality described in these Terms of Use reflects the verified
-                audit of <code className="font-mono text-white">{LEGAL_CONFIG.app.packageName}</code>{" "}
-                (<code className="font-mono text-white">v{LEGAL_CONFIG.app.versionName}</code>).
-                Fields marked with{" "}
-                <code className="font-mono text-[#FFB300]">
-                  [... — Developer Confirmation Required]
-                </code>{" "}
-                represent administrative legal details centralized in{" "}
-                <code className="font-mono text-white">src/config/legalConfig.js</code> that
-                require publisher confirmation prior to final binding publication.
-              </p>
-            </LegalCallout>
-
             {/* 1. ACCEPTANCE */}
             <section aria-labelledby="acceptance" className="space-y-4">
               <SectionHeading id="acceptance" number={1} title="Acceptance" />
               <p className="text-sm sm:text-base leading-relaxed text-[#E2E8F0]">
                 These Terms of Use (&ldquo;Terms&rdquo;) govern your installation, access, and
                 use of the Android application{" "}
-                <strong className="text-white">{LEGAL_CONFIG.app.name}</strong> (manifest title{" "}
-                <strong className="text-white">{LEGAL_CONFIG.app.manifestTitle}</strong>,
-                package identifier{" "}
+                <strong className="text-white">{LEGAL_CONFIG.app.name}</strong> (package
+                identifier{" "}
                 <code className="font-mono text-[#00FF88]">{LEGAL_CONFIG.app.packageName}</code>,
                 version <code className="font-mono text-white">{LEGAL_CONFIG.app.versionName}</code>)
                 provided by{" "}
-                <LegalFieldDisplay
-                  label="Developer Legal Name"
-                  value={LEGAL_CONFIG.placeholders.developerLegalName}
-                />{" "}
-                (&ldquo;Developer,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;).
+                <strong className="text-white">
+                  {LEGAL_CONFIG.placeholders.developerLegalName}
+                </strong>{" "}
+                ({LEGAL_CONFIG.placeholders.developerType}, &ldquo;Developer,&rdquo;
+                &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;).
               </p>
               <p className="text-sm sm:text-base leading-relaxed text-[#E2E8F0]">
                 By downloading, installing, enabling permissions for, or using{" "}
@@ -197,12 +178,12 @@ export default function TermsOfUsePage() {
               </p>
             </section>
 
-            {/* 2. DESCRIPTION OF NOXSCREEN */}
+            {/* 2. DESCRIPTION OF NOXSCREEN PRO */}
             <section aria-labelledby="description" className="space-y-4">
               <SectionHeading
                 id="description"
                 number={2}
-                title="Description of NoXScreen"
+                title="Description of NoxScreen Pro"
               />
               <p className="text-sm sm:text-base leading-relaxed text-[#E2E8F0]">
                 {LEGAL_CONFIG.app.name} is a general-purpose Android utility designed to
@@ -233,11 +214,11 @@ export default function TermsOfUsePage() {
                 </p>
                 <p>
                   <strong className="text-white">Energy &amp; Battery Estimates:</strong>{" "}
-                  &ldquo;Battery and energy savings shown by NoXScreen are estimates and may
-                  vary substantially depending on the device, display technology, brightness,
-                  refresh rate, applications running in the background, battery condition, and
-                  Android power-management behavior.&rdquo; We never guarantee a specific
-                  battery percentage or mAh saving.
+                  &ldquo;Battery and energy savings shown by {LEGAL_CONFIG.app.name} are estimates
+                  and may vary substantially depending on the device, display technology,
+                  brightness, refresh rate, applications running in the background, battery
+                  condition, and Android power-management behavior.&rdquo; We never guarantee a
+                  specific battery percentage or mAh saving.
                 </p>
               </LegalCallout>
             </section>
@@ -247,9 +228,9 @@ export default function TermsOfUsePage() {
               <SectionHeading id="eligibility" number={3} title="Eligibility" />
               <p className="text-sm sm:text-base leading-relaxed text-[#E2E8F0]">
                 You must have the legal capacity to enter into a binding agreement under the
-                laws of your jurisdiction to accept these Terms, or, if you are under the age
-                of majority in your jurisdiction, you must have the permission and supervision
-                of a parent or legal guardian who agrees to these Terms on your behalf.
+                laws applicable to you to accept these Terms, or, if you are under the age of
+                majority in your jurisdiction, you must have the permission and supervision of
+                a parent or legal guardian who agrees to these Terms on your behalf.
               </p>
             </section>
 
@@ -257,7 +238,7 @@ export default function TermsOfUsePage() {
             <section aria-labelledby="license" className="space-y-4">
               <SectionHeading id="license" number={4} title="License" />
               <p className="text-sm sm:text-base leading-relaxed text-[#E2E8F0]">
-                Subject to your continuous compliance with these Terms, the Developer grants
+                Subject to your continuous compliance with these Terms, the Developer ({LEGAL_CONFIG.placeholders.developerLegalName}) grants
                 you a personal, limited, non-exclusive, non-transferable, non-sublicensable,
                 revocable license to install and use the compiled object-code version of{" "}
                 {LEGAL_CONFIG.app.name} (<code className="font-mono text-white">{LEGAL_CONFIG.app.packageName}</code>)
@@ -332,7 +313,7 @@ export default function TermsOfUsePage() {
               </p>
             </section>
 
-            {/* 8. SAFETY AND SCREEN-BLACKOUT RESPONSIBILITY (Section 28) */}
+            {/* 8. SAFETY AND SCREEN-BLACKOUT RESPONSIBILITY */}
             <section aria-labelledby="safety-responsibility" className="space-y-4">
               <SectionHeading
                 id="safety-responsibility"
@@ -427,18 +408,21 @@ export default function TermsOfUsePage() {
               </p>
             </section>
 
-            {/* 11. REWARDED ADVERTISEMENTS */}
+            {/* 11. ADVERTISEMENTS (UNITY ADS) */}
             <section aria-labelledby="rewarded-ads" className="space-y-4">
               <SectionHeading
                 id="rewarded-ads"
                 number={11}
-                title="Rewarded Advertisements"
+                title="Advertisements (Unity Ads)"
               />
               <p className="text-sm sm:text-base leading-relaxed text-[#E2E8F0]">
-                {LEGAL_CONFIG.app.name} integrates the third-party Unity Ads SDK (
+                {LEGAL_CONFIG.app.name} integrates the third-party{" "}
+                <strong className="text-white">Unity Ads</strong> SDK (
                 <code className="font-mono text-white">{LEGAL_CONFIG.unityAds.sdkArtifact}</code>,
                 Unity Game ID <code className="font-mono text-white">{LEGAL_CONFIG.unityAds.gameId}</code>)
-                to display Banner, Interstitial, and Rewarded Video advertisements.
+                to display <strong className="text-white">Banner Ads</strong> and{" "}
+                <strong className="text-white">Video Ads</strong> only. No other advertising
+                networks or mediation platforms are integrated.
               </p>
               <p className="text-sm sm:text-base leading-relaxed text-[#E2E8F0]">
                 Advertisement availability depends on active internet connectivity (
@@ -447,9 +431,9 @@ export default function TermsOfUsePage() {
                   android.permission.ACCESS_NETWORK_STATE
                 </code>
                 ), regional ad inventory, and Unity Ads service operation. We do not guarantee
-                that a Rewarded Video advertisement will always be available to load when
-                requested, nor are we responsible for the third-party products or services
-                promoted inside advertisements delivered by Unity Ads.
+                that a Video advertisement will always be available to load when requested,
+                nor are we responsible for the third-party products or services promoted
+                inside advertisements delivered by Unity Ads.
               </p>
             </section>
 
@@ -465,7 +449,7 @@ export default function TermsOfUsePage() {
               />
               <p className="text-sm sm:text-base leading-relaxed text-[#E2E8F0]">
                 The Floating Lock feature provides 4 permanently free icon styles and 13
-                premium icon styles. Watching a qualifying Rewarded Video advertisement grants a
+                premium icon styles. Watching a qualifying Video advertisement grants a
                 temporary <strong className="text-white">7-day entitlement</strong> to use a
                 premium Floating Lock icon style, subject to the following technical and legal
                 conditions:
@@ -481,9 +465,9 @@ export default function TermsOfUsePage() {
                 </li>
                 <li>
                   <strong className="text-white">Not a Server-Side Subscription:</strong> A
-                  temporary 7-day unlock is strictly a local, ad-rewarded feature state. It is{" "}
-                  <strong className="text-white">not</strong> a recurring subscription, cloud
-                  entitlement, or paid purchase.
+                  temporary 7-day unlock is strictly a local feature state unlocked via a video
+                  advertisement. It is <strong className="text-white">not</strong> a recurring
+                  subscription, cloud entitlement, or paid purchase.
                 </li>
                 <li>
                   <strong className="text-white">No Monetary Value:</strong> Temporary Floating
@@ -500,7 +484,7 @@ export default function TermsOfUsePage() {
               </ul>
             </section>
 
-            {/* 13. THIRD-PARTY SERVICES (Section 30) */}
+            {/* 13. THIRD-PARTY SERVICES */}
             <section aria-labelledby="third-party-services" className="space-y-4">
               <SectionHeading
                 id="third-party-services"
@@ -514,10 +498,11 @@ export default function TermsOfUsePage() {
               <div className="space-y-3 text-sm leading-relaxed text-[#E2E8F0]">
                 <div className="rounded-lg border border-[#1C2D4A] bg-[#0B1324] p-4 print-surface">
                   <strong className="text-white block">
-                    1. {LEGAL_CONFIG.app.name} ({LEGAL_CONFIG.app.manifestTitle})
+                    1. {LEGAL_CONFIG.app.name}
                   </strong>
                   <span className="text-xs text-[#94A3B8]">
                     The Android utility application itself (<code className="font-mono text-white">{LEGAL_CONFIG.app.packageName}</code>),
+                    provided by {LEGAL_CONFIG.placeholders.developerLegalName} ({LEGAL_CONFIG.placeholders.developerType}),
                     which executes screen blackout, AOD, Floating Lock, Pocket Mode, Focus
                     Mode, and local statistics on your device.
                   </span>
@@ -528,9 +513,8 @@ export default function TermsOfUsePage() {
                   </strong>
                   <span className="text-xs text-[#94A3B8]">
                     An independent third-party advertising network (<code className="font-mono text-white">{LEGAL_CONFIG.unityAds.sdkArtifact}</code>)
-                    that delivers Banner, Interstitial, and Rewarded Video advertisements.
-                    Unity&apos;s services and data processing are governed by Unity&apos;s own
-                    terms and{" "}
+                    that delivers Banner Ads and Video Ads. Unity&apos;s services and data
+                    processing are governed by Unity&apos;s own terms and{" "}
                     <a
                       href={LEGAL_CONFIG.unityAds.privacyPolicyUrl}
                       target="_blank"
@@ -548,16 +532,17 @@ export default function TermsOfUsePage() {
                   </strong>
                   <span className="text-xs text-[#94A3B8]">
                     An independent external messaging service opened when you select WhatsApp
-                    Support (<code className="font-mono text-white">{LEGAL_CONFIG.whatsappSupport.rawUrl}</code>).
+                    Support (<code className="font-mono text-white">{LEGAL_CONFIG.whatsappSupport.phoneNumber}</code>{" "}
+                    / <code className="font-mono text-white">{LEGAL_CONFIG.whatsappSupport.rawUrl}</code>).
                     Any communication you initiate through WhatsApp is governed by
                     WhatsApp&apos;s own terms of service and privacy policies.
                   </span>
                 </div>
               </div>
               <p className="text-xs text-[#94A3B8]">
-                The Developer does not control and assumes no liability for the availability,
-                content, or privacy practices of Unity Ads, WhatsApp, or any other third-party
-                service.
+                The Developer ({LEGAL_CONFIG.placeholders.developerLegalName}) does not control
+                and assumes no liability for the availability, content, or privacy practices of
+                Unity Ads, WhatsApp, or any other third-party service.
               </p>
             </section>
 
@@ -584,7 +569,7 @@ export default function TermsOfUsePage() {
                 </li>
                 <li>
                   Generating fraudulent advertisement impressions, automated clicks, or
-                  manipulating Unity Ads rewarded callbacks or local{" "}
+                  manipulating Unity Ads video advertisement callbacks or local{" "}
                   <code className="font-mono text-white">NoxFloatingLockEntitlements</code>{" "}
                   records;
                 </li>
@@ -604,18 +589,18 @@ export default function TermsOfUsePage() {
                 title="Intellectual Property"
               />
               <p className="text-sm sm:text-base leading-relaxed text-[#E2E8F0]">
-                All rights, title, and interest in and to {LEGAL_CONFIG.app.name} and{" "}
-                {LEGAL_CONFIG.app.manifestTitle}, including its user interface design, custom
-                clock styles (<em>Orbital Neon</em>, <em>Neon Outline</em>,{" "}
-                <em>Orbital Chrono</em>, <em>Neon Pulse</em>), Floating Lock icon assets,
-                graphics, code, and documentation, are owned by or licensed to{" "}
-                <LegalFieldDisplay
-                  label="Developer Legal Name"
-                  value={LEGAL_CONFIG.placeholders.developerLegalName}
-                />
-                . Android is a trademark of Google LLC. Unity is a trademark of Unity
-                Technologies. WhatsApp is a trademark of WhatsApp LLC. All third-party
-                trademarks are the property of their respective owners.
+                All rights, title, and interest in and to {LEGAL_CONFIG.app.name}, including
+                its user interface design, custom clock styles (<em>Orbital Neon</em>,{" "}
+                <em>Neon Outline</em>, <em>Orbital Chrono</em>, <em>Neon Pulse</em>), Floating
+                Lock icon assets, graphics, code, and documentation, are owned by or licensed
+                to{" "}
+                <strong className="text-white">
+                  {LEGAL_CONFIG.placeholders.developerLegalName}
+                </strong>{" "}
+                ({LEGAL_CONFIG.placeholders.developerType}). Android is a trademark of Google
+                LLC. Unity is a trademark of Unity Technologies. WhatsApp is a trademark of
+                WhatsApp LLC. All third-party trademarks are the property of their respective
+                owners.
               </p>
             </section>
 
@@ -666,8 +651,8 @@ export default function TermsOfUsePage() {
               <p className="text-sm sm:text-base leading-relaxed text-[#E2E8F0]">
                 TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW,{" "}
                 <strong className="text-white">
-                  {LEGAL_CONFIG.app.name.toUpperCase()} ({LEGAL_CONFIG.app.manifestTitle.toUpperCase()})
-                  IS PROVIDED ON AN &ldquo;AS IS&rdquo; AND &ldquo;AS AVAILABLE&rdquo; BASIS
+                  {LEGAL_CONFIG.app.name.toUpperCase()} IS PROVIDED ON AN &ldquo;AS IS&rdquo;
+                  AND &ldquo;AS AVAILABLE&rdquo; BASIS
                 </strong>
                 , WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED, OR STATUTORY,
                 INCLUDING WITHOUT LIMITATION ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS
@@ -693,10 +678,9 @@ export default function TermsOfUsePage() {
               />
               <p className="text-sm sm:text-base leading-relaxed text-[#E2E8F0]">
                 TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL{" "}
-                <LegalFieldDisplay
-                  label="Developer Legal Name"
-                  value={LEGAL_CONFIG.placeholders.developerLegalName}
-                />{" "}
+                <strong className="text-white">
+                  {LEGAL_CONFIG.placeholders.developerLegalName}
+                </strong>{" "}
                 BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR EXEMPLARY
                 DAMAGES, INCLUDING BUT NOT LIMITED TO DAMAGES FOR LOSS OF DATA, MISSED
                 NOTIFICATIONS OR ALARMS, DISPLAY HARDWARE WEAR, BATTERY DEGRADATION, PERSONAL
@@ -723,10 +707,10 @@ export default function TermsOfUsePage() {
             <section aria-labelledby="governing-law" className="space-y-4">
               <SectionHeading id="governing-law" number={21} title="Governing Law" />
               <p className="text-sm sm:text-base leading-relaxed text-[#E2E8F0]">
-                Except to the extent preempted by mandatory consumer protection laws in your
-                country of residence, these Terms and any dispute arising out of or relating to{" "}
-                {LEGAL_CONFIG.app.name} shall be governed by and construed in accordance with
-                 the laws and jurisdiction specified below:
+                No specific governing-law jurisdiction is stated by the individual developer.
+                Nothing in these Terms limits, excludes, or waives any mandatory consumer
+                protection, privacy, or statutory rights that apply to you under the laws of
+                your habitual residence or applicable jurisdiction.
               </p>
               <div className="rounded-lg border border-[#1C2D4A] bg-[#0B1324] p-4 text-xs sm:text-sm print-surface">
                 <span className="text-[#94A3B8]">Governing Law &amp; Jurisdiction: </span>
@@ -752,20 +736,15 @@ export default function TermsOfUsePage() {
               </p>
 
               <div className="rounded-lg border border-[#1C2D4A] bg-[#0B1324] p-5 space-y-4 print-surface">
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 text-xs sm:text-sm">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 text-xs sm:text-sm">
                   <div>
-                    <div className="text-xs text-[#94A3B8]">
-                      Developer / Legal Entity Name
-                    </div>
-                    <div className="mt-1">
-                      <LegalFieldDisplay
-                        label="Developer Legal Name"
-                        value={LEGAL_CONFIG.placeholders.developerLegalName}
-                      />
+                    <div className="text-xs text-[#94A3B8]">Developer</div>
+                    <div className="mt-1 font-semibold text-white">
+                      {LEGAL_CONFIG.placeholders.developerLegalName} ({LEGAL_CONFIG.placeholders.developerType})
                     </div>
                   </div>
                   <div>
-                    <div className="text-xs text-[#94A3B8]">Developer Support Email</div>
+                    <div className="text-xs text-[#94A3B8]">Developer / Support Email</div>
                     <div className="mt-1">
                       <LegalFieldDisplay
                         label="Developer Support Email"
@@ -774,15 +753,11 @@ export default function TermsOfUsePage() {
                     </div>
                   </div>
                   <div>
-                    <div className="text-xs text-[#94A3B8]">
-                      WhatsApp Support Account &amp; Number
-                    </div>
+                    <div className="text-xs text-[#94A3B8]">WhatsApp Support Number</div>
                     <div className="mt-1 font-medium text-white">
-                      {LEGAL_CONFIG.whatsappSupport.accountName} (
                       <code className="font-mono text-[#00FF88]">
                         {LEGAL_CONFIG.whatsappSupport.phoneNumber}
                       </code>
-                      )
                     </div>
                   </div>
                   <div>
@@ -796,6 +771,17 @@ export default function TermsOfUsePage() {
                       >
                         <span>{LEGAL_CONFIG.whatsappSupport.rawUrl}</span>
                         <ExternalLink className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                      </a>
+                    </div>
+                  </div>
+                  <div className="sm:col-span-2">
+                    <div className="text-xs text-[#94A3B8]">Official Legal Website</div>
+                    <div className="mt-1">
+                      <a
+                        href={LEGAL_CONFIG.placeholders.officialWebsiteUrl}
+                        className="font-mono text-xs text-[#00E5FF] underline hover:text-white break-all"
+                      >
+                        {LEGAL_CONFIG.placeholders.officialWebsiteUrl}
                       </a>
                     </div>
                   </div>

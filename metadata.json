@@ -1,6 +1,6 @@
 {
   "name": "NoXScreen Privacy Policy & Terms of Use",
-  "description": "Official Privacy Policy, Terms of Use, Android Permissions Audit, and Technical Data Processing Documentation for NoXScreen / NoxScreen Pro (com.noxscreen.app v1.0.0).",
+  "description": "Official Privacy Policy, Terms of Use, Android Permissions Audit, and Technical Data Processing Documentation for NoxScreen Pro (com.noxscreen.app v1.0.0).",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

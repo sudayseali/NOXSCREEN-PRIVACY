@@ -21,11 +21,11 @@ export default function Header() {
       </a>
 
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
-        {/* Zone 1: Brand Identity (Section 35: NoXScreen PRO ECO SCREEN OPTIMIZER) */}
+        {/* Zone 1: Brand Identity (NoxScreen Pro — ECO SCREEN OPTIMIZER) */}
         <Link
           to="/privacy-policy"
           className="group flex items-center gap-3 text-left focus:outline-none"
-          aria-label="NoXScreen Pro Eco Screen Optimizer Legal Documentation Home"
+          aria-label="NoxScreen Pro Eco Screen Optimizer Legal Documentation Home"
         >
           <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#1C2D4A] bg-[#091122] font-mono text-sm font-bold text-[#00E676] transition-colors group-hover:border-[#00E676]/60">
             NX
@@ -34,9 +34,6 @@ export default function Header() {
             <div className="flex items-center gap-2">
               <span className="text-base font-bold tracking-tight text-white">
                 {LEGAL_CONFIG.app.name}
-              </span>
-              <span className="font-mono text-xs font-semibold tracking-wider text-[#00E676]">
-                PRO
               </span>
             </div>
             <span className="font-mono text-[10px] tracking-widest text-[#94A3B8]">
@@ -74,17 +71,17 @@ export default function Header() {
           >
             Terms of Use
           </NavLink>
-          <a
-            href="#permissions-section"
+          <Link
+            to="/privacy-policy#permissions-section"
             className="py-1 text-sm font-medium text-[#94A3B8] transition-colors hover:text-white whitespace-nowrap"
           >
-            Permissions Audit
-          </a>
+            Android Permissions
+          </Link>
           <a
             href="#contact-section"
             className="py-1 text-sm font-medium text-[#94A3B8] transition-colors hover:text-white whitespace-nowrap"
           >
-            Contact & Support
+            Contact &amp; Support
           </a>
         </nav>
 
@@ -118,7 +115,9 @@ export default function Header() {
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-legal-nav"
-            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-label={
+              mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"
+            }
             className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[#1C2D4A] bg-[#0B1324] text-white hover:border-[#00E676]"
           >
             {mobileMenuOpen ? (
@@ -181,7 +180,9 @@ export default function Header() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#00E676] px-4 py-2.5 text-xs font-semibold text-[#020612]"
               >
-                <span>WhatsApp Support ({LEGAL_CONFIG.whatsappSupport.phoneNumber})</span>
+                <span>
+                  WhatsApp Support ({LEGAL_CONFIG.whatsappSupport.phoneNumber})
+                </span>
                 <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
               </a>
             </div>

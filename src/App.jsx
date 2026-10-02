@@ -14,11 +14,21 @@ import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfUsePage from "./pages/TermsOfUsePage";
 import { LEGAL_CONFIG } from "./config/legalConfig";
 
-function CanonicalUpdater() {
+function RouteMetadataAndScrollHandler() {
   const location = useLocation();
 
   useEffect(() => {
-    const canonicalHref = `${window.location.origin}${location.pathname}`;
+    const isTerms = location.pathname === "/terms-of-use";
+    const canonicalHref = isTerms
+      ? LEGAL_CONFIG.placeholders.termsWebsiteUrl
+      : LEGAL_CONFIG.placeholders.officialWebsiteUrl;
+
+    const pageTitle = isTerms
+      ? "NoxScreen Pro Terms of Use"
+      : "NoxScreen Pro Privacy Policy";
+
+    document.title = pageTitle;
+
     let link = document.querySelector('link[rel="canonical"]');
     if (!link) {
       link = document.createElement("link");
@@ -26,14 +36,35 @@ function CanonicalUpdater() {
       document.head.appendChild(link);
     }
     link.setAttribute("href", canonicalHref);
-  }, [location.pathname]);
+
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) ogUrl.setAttribute("content", canonicalHref);
+
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute("content", pageTitle);
+
+    const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+    if (twitterTitle) twitterTitle.setAttribute("content", pageTitle);
+
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 50);
+        return;
+      }
+    }
+    window.scrollTo(0, 0);
+  }, [location.pathname, location.hash]);
 
   return null;
 }
 
 function NotFoundFallback() {
   useEffect(() => {
-    document.title = `Page Not Found — ${LEGAL_CONFIG.app.name} Legal Documentation`;
+    document.title = `Page Not Found — ${LEGAL_CONFIG.app.name}`;
   }, []);
 
   return (
@@ -52,9 +83,9 @@ function NotFoundFallback() {
           Requested Legal Route Not Found
         </h1>
         <p className="text-sm text-[#94A3B8] max-w-xl mx-auto leading-relaxed">
-          The URL you requested does not match an active legal document route. You can
-          access the official {LEGAL_CONFIG.app.name} ({LEGAL_CONFIG.app.manifestTitle})
-          Privacy Policy or Terms of Use directly using the links below.
+          The URL you requested does not match an active legal document route.
+          You can access the official {LEGAL_CONFIG.app.name} Privacy Policy or
+          Terms of Use directly using the links below.
         </p>
       </div>
       <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
@@ -80,12 +111,15 @@ function NotFoundFallback() {
 export default function App() {
   return (
     <BrowserRouter>
-      <CanonicalUpdater />
+      <RouteMetadataAndScrollHandler />
       <div className="flex min-h-screen flex-col bg-[#020612] text-white">
         <Header />
         <div className="flex-1">
           <Routes>
-            <Route path="/" element={<Navigate to="/privacy-policy" replace />} />
+            <Route
+              path="/"
+              element={<Navigate to="/privacy-policy" replace />}
+            />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             <Route path="/terms-of-use" element={<TermsOfUsePage />} />
             <Route path="*" element={<NotFoundFallback />} />

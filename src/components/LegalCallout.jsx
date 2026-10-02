@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Link2, Check, AlertTriangle, Info, ShieldAlert } from "lucide-react";
-import { isPlaceholderValue } from "../config/legalConfig";
 
 /**
  * Callout box for highlighting technical disclosures, safety disclaimers,
- * third-party distinctions, or pending developer confirmations.
+ * and third-party distinctions.
  */
 export default function LegalCallout({
   variant = "info",
@@ -60,13 +59,17 @@ export default function LegalCallout({
           className={`mt-0.5 h-5 w-5 shrink-0 ${current.labelColor}`}
           aria-hidden="true"
         />
-        <div className="space-y-2 text-sm leading-relaxed text-[#94A3B8] flex-1">
+        <div className="space-y-2 text-sm leading-relaxed text-[#94A3B8] flex-1 min-w-0">
           {title && (
             <div className="flex flex-wrap items-center gap-2">
-              <span className={`font-mono text-xs font-semibold ${current.labelColor}`}>
+              <span
+                className={`font-mono text-xs font-semibold ${current.labelColor}`}
+              >
                 {current.label}
               </span>
-              <span className="text-[#1C2D4A]" aria-hidden="true">·</span>
+              <span className="text-[#1C2D4A]" aria-hidden="true">
+                ·
+              </span>
               <h4 className={`font-semibold ${current.titleColor}`}>{title}</h4>
             </div>
           )}
@@ -78,29 +81,25 @@ export default function LegalCallout({
 }
 
 /**
- * Renders a legal value and visibly highlights when it still requires developer confirmation
- * (Section 31: "The UI must visibly indicate when a required legal field still needs developer confirmation").
+ * Renders a confirmed legal value cleanly (with mailto link support for email addresses).
  */
-export function LegalFieldDisplay({ value, label }) {
-  const isPending = isPlaceholderValue(value);
-
-  if (!isPending) {
-    return <span className="font-medium text-white">{value}</span>;
+export function LegalFieldDisplay({ value, isEmail = false }) {
+  if (isEmail && typeof value === "string" && value.includes("@")) {
+    return (
+      <a
+        href={`mailto:${value}`}
+        className="font-mono text-[#00E5FF] underline hover:text-white break-all"
+      >
+        {value}
+      </a>
+    );
   }
 
-  return (
-    <span
-      className="inline-flex flex-wrap items-center gap-1.5 rounded border border-[#FFB300]/40 bg-[#FFB300]/10 px-2 py-0.5 font-mono text-xs text-[#FFB300]"
-      title={label ? `${label}: Pending developer confirmation` : "Pending developer confirmation"}
-    >
-      <AlertTriangle className="h-3.5 w-3.5 shrink-0 text-[#FFB300]" aria-hidden="true" />
-      <span>{value}</span>
-    </span>
-  );
+  return <span className="font-medium text-white">{value}</span>;
 }
 
 /**
- * Standardized Section Heading with stable anchor ID and Copy-Link button (Section 39).
+ * Standardized Section Heading with stable anchor ID and Copy-Link button.
  */
 export function SectionHeading({ id, number, title }) {
   const [copied, setCopied] = useState(false);

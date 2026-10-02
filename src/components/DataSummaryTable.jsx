@@ -2,7 +2,7 @@ import React from "react";
 import { LEGAL_CONFIG } from "../config/legalConfig";
 
 /**
- * Highly visible privacy & data architecture summary (Sections 16 & 37)
+ * Highly visible privacy & data architecture summary
  * Clearly separates first-party local processing/storage from third-party SDKs and external support.
  */
 export default function DataSummaryTable() {
@@ -19,7 +19,7 @@ export default function DataSummaryTable() {
         "No user registration or login account",
         "No developer-operated backend or API server",
         "No developer-operated cloud synchronization",
-        "NoXScreen does not directly transmit the locally processed app data described in this policy to developer-operated servers",
+        "NoxScreen Pro does not directly transmit the locally processed app data described in this policy to developer-operated servers",
       ],
     },
     {
@@ -58,19 +58,18 @@ export default function DataSummaryTable() {
       statusText: "Independent Third-Party Terms Apply",
       accentColor: "text-[#FFB300]",
       borderAccent: "border-t-[#FFB300]",
-      summary:
-        "Unity Ads and optional WhatsApp communication.",
+      summary: "Unity Ads (Banner and Video Ads) and optional WhatsApp communication.",
       details: [
-        `Unity Ads SDK (${LEGAL_CONFIG.unityAds.sdkArtifact}, Game ID: ${LEGAL_CONFIG.unityAds.gameId}) processes device, network, advertising, and diagnostic data when ads are requested or displayed`,
+        `Unity Ads SDK (${LEGAL_CONFIG.unityAds.sdkArtifact}, Game ID: ${LEGAL_CONFIG.unityAds.gameId}) processes device, network, advertising, and diagnostic data when Banner and Video ads are requested or displayed`,
         `WhatsApp Support (${LEGAL_CONFIG.whatsappSupport.phoneNumber}) is an external service opened only when initiated by the user`,
-        "Android OS system backup may back up eligible local data if android:allowBackup=\"true\" is active in device settings",
+        'Android OS system backup may back up eligible local data if android:allowBackup="true" is active in device settings',
       ],
     },
   ];
 
   return (
     <div className="space-y-6">
-      {/* 4-Pillar Reviewer Summary Grid (Section 37) */}
+      {/* 4-Pillar Reviewer Summary Grid */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {pillars.map((pillar) => (
           <div
@@ -95,7 +94,10 @@ export default function DataSummaryTable() {
               <ul className="mt-3 space-y-1.5 text-xs text-[#94A3B8] leading-relaxed">
                 {pillar.details.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-2">
-                    <span className="font-mono text-[#00E676] select-none" aria-hidden="true">
+                    <span
+                      className="font-mono text-[#00E676] select-none"
+                      aria-hidden="true"
+                    >
                       –
                     </span>
                     <span>{item}</span>
@@ -116,53 +118,70 @@ export default function DataSummaryTable() {
         <table className="w-full border-collapse text-left text-xs sm:text-sm">
           <thead>
             <tr className="border-b border-[#1C2D4A] bg-[#091122] text-xs font-semibold text-white">
-              <th scope="col" className="py-3.5 px-4">Data / Processing Domain</th>
-              <th scope="col" className="py-3.5 px-4">Processed By</th>
-              <th scope="col" className="py-3.5 px-4">Storage / Transmission Mechanism</th>
-              <th scope="col" className="py-3.5 px-4">Governing Policy / User Control</th>
+              <th scope="col" className="py-3.5 px-4">
+                Data / Processing Domain
+              </th>
+              <th scope="col" className="py-3.5 px-4">
+                Processed By
+              </th>
+              <th scope="col" className="py-3.5 px-4">
+                Storage / Transmission Mechanism
+              </th>
+              <th scope="col" className="py-3.5 px-4">
+                Governing Policy / User Control
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-[#1E293B] text-[#E2E8F0]">
             <tr>
               <td className="py-3.5 px-4 font-medium text-white">
-                App Configuration, Usage Stats & 7-Day Entitlements
+                App Configuration, Usage Stats &amp; 7-Day Entitlements
               </td>
               <td className="py-3.5 px-4 font-mono text-xs text-[#00E676]">
-                NoXScreen (On-Device)
+                {LEGAL_CONFIG.app.name} (On-Device)
               </td>
               <td className="py-3.5 px-4 text-xs text-[#94A3B8]">
-                Stored locally in Android <code className="font-mono text-white">SharedPreferences</code>; not uploaded to developer-operated servers
+                Stored locally in Android{" "}
+                <code className="font-mono text-white">SharedPreferences</code>;
+                not uploaded to developer-operated servers
               </td>
               <td className="py-3.5 px-4 text-xs text-[#94A3B8]">
-                Clear app data in Android Settings or uninstall NoXScreen
+                Clear app data in Android Settings or uninstall{" "}
+                {LEGAL_CONFIG.app.name}
               </td>
             </tr>
             <tr>
               <td className="py-3.5 px-4 font-medium text-white">
-                Sensors, Battery Level & Focus Mode Foreground Events
+                Sensors, Battery Level &amp; Focus Mode Foreground Events
               </td>
               <td className="py-3.5 px-4 font-mono text-xs text-[#00E676]">
-                NoXScreen (Real-Time Local)
+                {LEGAL_CONFIG.app.name} (Real-Time Local)
               </td>
               <td className="py-3.5 px-4 text-xs text-[#94A3B8]">
-                Evaluated locally in real time via Android system APIs; sensor streams are not recorded as historical datasets
+                Evaluated locally in real time via Android system APIs; sensor
+                streams are not recorded as historical datasets
               </td>
               <td className="py-3.5 px-4 text-xs text-[#94A3B8]">
-                Toggle features inside app or revoke optional permissions in Android Settings
+                Toggle features inside app or revoke optional permissions in
+                Android Settings
               </td>
             </tr>
             <tr>
               <td className="py-3.5 px-4 font-medium text-white">
-                Biometric & Device Credential Authentication
+                Biometric &amp; Device Credential Authentication
               </td>
               <td className="py-3.5 px-4 font-mono text-xs text-[#00E5FF]">
                 Android System OS
               </td>
               <td className="py-3.5 px-4 text-xs text-[#94A3B8]">
-                Handled by Android <code className="font-mono text-white">BiometricPrompt</code> / <code className="font-mono text-white">KeyguardManager</code>; raw biometric templates and PINs are never exposed to NoXScreen
+                Handled by Android{" "}
+                <code className="font-mono text-white">BiometricPrompt</code> /{" "}
+                <code className="font-mono text-white">KeyguardManager</code>;
+                raw biometric templates and PINs are never exposed to{" "}
+                {LEGAL_CONFIG.app.name}
               </td>
               <td className="py-3.5 px-4 text-xs text-[#94A3B8]">
-                Managed via Android system security & biometric settings
+                Managed via Android system security &amp; biometric settings
               </td>
             </tr>
             <tr>
@@ -173,7 +192,12 @@ export default function DataSummaryTable() {
                 Android Platform Backup
               </td>
               <td className="py-3.5 px-4 text-xs text-[#94A3B8]">
-                Manifest includes <code className="font-mono text-white">android:allowBackup=&quot;true&quot;</code>; OS may back up eligible local prefs according to device backup settings
+                Manifest includes{" "}
+                <code className="font-mono text-white">
+                  android:allowBackup=&quot;true&quot;
+                </code>
+                ; OS may back up eligible local prefs according to device backup
+                settings
               </td>
               <td className="py-3.5 px-4 text-xs text-[#94A3B8]">
                 Controlled by device&apos;s Android/Google backup settings
@@ -181,13 +205,19 @@ export default function DataSummaryTable() {
             </tr>
             <tr>
               <td className="py-3.5 px-4 font-medium text-white">
-                Advertising Requests & Rewarded Video Delivery
+                Advertising Requests &amp; Ad Delivery (Banner and Video Ads)
               </td>
               <td className="py-3.5 px-4 font-mono text-xs text-[#FFB300]">
                 Unity Ads (Third-Party SDK)
               </td>
               <td className="py-3.5 px-4 text-xs text-[#94A3B8]">
-                Transmitted over <code className="font-mono text-white">INTERNET</code> to Unity Ads servers (<code className="font-mono text-white">{LEGAL_CONFIG.unityAds.sdkArtifact}</code>)
+                Transmitted over{" "}
+                <code className="font-mono text-white">INTERNET</code> to Unity
+                Ads servers (
+                <code className="font-mono text-white">
+                  {LEGAL_CONFIG.unityAds.sdkArtifact}
+                </code>
+                )
               </td>
               <td className="py-3.5 px-4 text-xs text-[#94A3B8]">
                 Governed by{" "}
@@ -199,7 +229,7 @@ export default function DataSummaryTable() {
                 >
                   Unity Privacy Policy
                 </a>{" "}
-                & Android Advertising ID controls
+                &amp; Android Advertising ID controls
               </td>
             </tr>
             <tr>
@@ -210,7 +240,12 @@ export default function DataSummaryTable() {
                 WhatsApp (External Service)
               </td>
               <td className="py-3.5 px-4 text-xs text-[#94A3B8]">
-                External link (<code className="font-mono text-white">{LEGAL_CONFIG.whatsappSupport.rawUrl}</code>); no data sent until user voluntarily sends a message in WhatsApp
+                External link (
+                <code className="font-mono text-white">
+                  {LEGAL_CONFIG.whatsappSupport.rawUrl}
+                </code>
+                ); no data sent until user voluntarily sends a message in
+                WhatsApp
               </td>
               <td className="py-3.5 px-4 text-xs text-[#94A3B8]">
                 Governed by applicable WhatsApp Privacy Policy and Terms

@@ -8,39 +8,48 @@ export default function Footer() {
     <footer className="border-t border-[#1C2D4A] bg-[#030712] text-sm text-[#94A3B8] no-print">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-12">
-          {/* Column 1: Application Identity */}
+          {/* Column 1: Application & Developer Identity */}
           <div className="md:col-span-5 space-y-3">
-            <div className="flex items-center gap-2.5">
+            <div className="flex flex-wrap items-center gap-2.5">
               <span className="text-base font-bold text-white">
-                {LEGAL_CONFIG.app.name} / {LEGAL_CONFIG.app.manifestTitle}
+                {LEGAL_CONFIG.app.name}
               </span>
-              <span className="text-[#1C2D4A]" aria-hidden="true">·</span>
+              <span className="text-[#1C2D4A]" aria-hidden="true">
+                ·
+              </span>
               <span className="font-mono text-xs text-[#00E676]">
-                v{LEGAL_CONFIG.app.versionName} (Code {LEGAL_CONFIG.app.versionCode})
+                v{LEGAL_CONFIG.app.versionName}
               </span>
             </div>
             <p className="text-xs leading-relaxed text-[#94A3B8] max-w-md">
-              Official technical privacy documentation, Android permission disclosures,
-              local storage specification, and Terms of Use for Android package{" "}
-              <code className="font-mono text-white">{LEGAL_CONFIG.app.packageName}</code>.
+              Official Privacy Policy, Terms of Use, Android permission
+              disclosures, and local storage documentation for{" "}
+              <strong className="text-white">{LEGAL_CONFIG.app.name}</strong> (
+              <code className="font-mono text-white">
+                {LEGAL_CONFIG.app.packageName}
+              </code>
+              ).
             </p>
-            <div className="pt-1 text-xs text-[#94A3B8] space-y-1">
+            <div className="pt-1 text-xs text-[#94A3B8] space-y-1.5">
               <div>
-                <span className="font-medium text-white">Developer / Legal Entity: </span>
-                <span className="font-mono text-[#FFB300]">
-                  {LEGAL_CONFIG.placeholders.developerLegalName}
+                <span className="font-medium text-white">Developer: </span>
+                <span className="text-[#E2E8F0]">
+                  {LEGAL_CONFIG.developer.name} ({LEGAL_CONFIG.developer.type})
                 </span>
               </div>
-              <div>
-                <span className="font-medium text-white">Official Website URL: </span>
-                <span className="font-mono text-[#FFB300]">
-                  {LEGAL_CONFIG.placeholders.officialWebsiteUrl}
-                </span>
+              <div className="break-all">
+                <span className="font-medium text-white">Support: </span>
+                <a
+                  href={`mailto:${LEGAL_CONFIG.developer.email}`}
+                  className="font-mono text-[#00E5FF] underline hover:text-white transition-colors"
+                >
+                  {LEGAL_CONFIG.developer.email}
+                </a>
               </div>
             </div>
           </div>
 
-          {/* Column 2: Legal Documents */}
+          {/* Column 2: Legal Documentation Links */}
           <div className="md:col-span-3 space-y-2.5">
             <h2 className="text-xs font-semibold tracking-wider text-white">
               Legal Documentation
@@ -51,7 +60,7 @@ export default function Footer() {
                   to="/privacy-policy"
                   className="hover:text-[#00FF88] transition-colors"
                 >
-                  Privacy Policy (/privacy-policy)
+                  Privacy Policy
                 </Link>
               </li>
               <li>
@@ -59,7 +68,7 @@ export default function Footer() {
                   to="/terms-of-use"
                   className="hover:text-[#00FF88] transition-colors"
                 >
-                  Terms of Use (/terms-of-use)
+                  Terms of Use
                 </Link>
               </li>
               <li>
@@ -67,15 +76,7 @@ export default function Footer() {
                   to="/privacy-policy#permissions-section"
                   className="hover:text-[#00FF88] transition-colors"
                 >
-                  Android Permissions Table
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/privacy-policy#local-storage"
-                  className="hover:text-[#00FF88] transition-colors"
-                >
-                  SharedPreferences Registry
+                  Android Permissions
                 </Link>
               </li>
               <li>
@@ -83,7 +84,7 @@ export default function Footer() {
                   to="/privacy-policy#data-deletion"
                   className="hover:text-[#00FF88] transition-colors"
                 >
-                  Data Retention & Deletion
+                  Data Retention &amp; Deletion
                 </Link>
               </li>
             </ul>
@@ -92,7 +93,7 @@ export default function Footer() {
           {/* Column 3: External Services & Support */}
           <div className="md:col-span-4 space-y-2.5">
             <h2 className="text-xs font-semibold tracking-wider text-white">
-              Third-Party Policies & Support Channels
+              Third-Party Policies &amp; Support
             </h2>
             <ul className="space-y-2 text-xs">
               <li>
@@ -102,8 +103,8 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 hover:text-[#00E5FF] transition-colors"
                 >
-                  <span>Unity Privacy Policy (SDK {LEGAL_CONFIG.unityAds.sdkArtifact})</span>
-                  <ExternalLink className="h-3 w-3" aria-hidden="true" />
+                  <span>Unity Privacy Policy</span>
+                  <ExternalLink className="h-3 w-3 shrink-0" aria-hidden="true" />
                 </a>
               </li>
               <li>
@@ -114,32 +115,30 @@ export default function Footer() {
                   className="inline-flex items-center gap-1.5 hover:text-[#00FF88] transition-colors"
                 >
                   <span>
-                    {LEGAL_CONFIG.whatsappSupport.accountName} ({LEGAL_CONFIG.whatsappSupport.phoneNumber})
+                    WhatsApp Support ({LEGAL_CONFIG.whatsappSupport.phoneNumber})
                   </span>
-                  <ExternalLink className="h-3 w-3" aria-hidden="true" />
+                  <ExternalLink className="h-3 w-3 shrink-0" aria-hidden="true" />
                 </a>
-              </li>
-              <li className="pt-1 text-[11px] leading-relaxed text-[#94A3B8]">
-                Support Email:{" "}
-                <span className="font-mono text-[#FFB300]">
-                  {LEGAL_CONFIG.placeholders.supportEmail}
-                </span>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom Legal Disclaimer Bar */}
+        {/* Bottom Legal Bar */}
         <div className="mt-10 border-t border-[#1E293B] pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-[#94A3B8]">
           <p>
-            Documentation prepared for <strong className="text-white">{LEGAL_CONFIG.app.name}</strong> (
-            <code className="font-mono text-white">{LEGAL_CONFIG.app.packageName}</code> · Version{" "}
-            <code className="font-mono text-white">{LEGAL_CONFIG.app.versionName}</code>).
+            <strong className="text-white">{LEGAL_CONFIG.app.name}</strong> ·{" "}
+            <code className="font-mono text-white">
+              {LEGAL_CONFIG.app.packageName}
+            </code>{" "}
+            · Version{" "}
+            <code className="font-mono text-white">
+              {LEGAL_CONFIG.app.versionName}
+            </code>
           </p>
           <p className="text-[11px] text-[#94A3B8]">
-            Transparent technical disclosure · Fields marked with{" "}
-            <span className="text-[#FFB300] font-medium">Developer Confirmation Required</span>{" "}
-            await final publisher entry.
+            Effective: {LEGAL_CONFIG.placeholders.effectiveDate} · Last Updated:{" "}
+            {LEGAL_CONFIG.placeholders.lastUpdatedDate}
           </p>
         </div>
       </div>
